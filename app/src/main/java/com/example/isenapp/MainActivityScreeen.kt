@@ -83,6 +83,7 @@ fun MainActivityScreeen() {
                 Log.d("DEBUG", "🆔 Titre reçu : $eventTitle")
                 // Afficher le titre et la description sur l'écran de détails
                 EventDetailScreen(navController, eventTitle)
+
             }
 
 
