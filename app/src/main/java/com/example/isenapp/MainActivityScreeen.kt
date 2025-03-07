@@ -26,11 +26,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.livedata.observeAsState
+import com.google.gson.Gson
 
 
 @Composable
 fun MainActivityScreeen() {
     val navController = rememberNavController()
+
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route ?: "main" // Assurer une valeur par défaut
 
@@ -86,15 +88,14 @@ fun MainActivityScreeen() {
             composable(route = "agenda") { AgendaScreen(navController) }
             composable("history") { HistoryScreen() }
             composable("events") { EventsScreen(navController) }
-            composable("event_details/{eventTitle}") { backStackEntry ->
-                val eventTitle = backStackEntry.arguments?.getString("eventTitle") ?: "Titre inconnu"
-                Log.d("DEBUG", "🆔 Titre reçu : $eventTitle")
-                // Afficher le titre et la description sur l'écran de détails
-                EventDetailScreen(navController, eventTitle  )
+            composable("event_details/{eventData}") { backStackEntry ->
+                val jsonEvent = backStackEntry.arguments?.getString("eventData")
+                val event = Gson().fromJson(jsonEvent, Event::class.java) // Convertir JSON → Objet Event
 
+                EventDetailScreen(navController, event) // Passer l'objet complet
             }
-
 
         }
         }
 }
+

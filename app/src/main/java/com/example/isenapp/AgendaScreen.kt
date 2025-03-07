@@ -97,8 +97,8 @@ fun AgendaScreen(
                         title = title,
                         description = "$time - $description",
                         date = selectedDate,
-                        lieu = lieu?.takeIf { it.isNotBlank() },
-                        categorie = categorie?.takeIf { it.isNotBlank() }
+                        location = lieu?.takeIf { it.isNotBlank() },
+                        category = categorie?.takeIf { it.isNotBlank() }
 
                     )
                 )

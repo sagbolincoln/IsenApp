@@ -1,4 +1,5 @@
 package com.example.isenapp
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.google.gson.Gson
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,6 +44,9 @@ fun EventsScreen(navController: NavController ,
 )
 {
     val events by viewModel.events.observeAsState(initial = emptyList())
+    val event = events.firstOrNull()
+    val jsonEvent = event?.let { Uri.encode(Gson().toJson(it)) }
+
 
     LaunchedEffect(Unit){
         viewModel.fetchEvent()
@@ -58,7 +63,7 @@ fun EventsScreen(navController: NavController ,
             items(events) {event ->
                 EventItem(event = event, onClick =
                 {
-                    navController.navigate("event_details/${event.title}")
+                    navController.navigate("event_details/$jsonEvent")
                 })
             }
         }
