@@ -21,4 +21,8 @@ class EventViewModel : ViewModel() {
             }
         }
     }
+    fun addEvent(event: Event) {
+        _events.value = _events.value.orEmpty() + event
+    }
+
 }

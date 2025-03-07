@@ -21,6 +21,7 @@ import androidx.compose.material.icons.filled.Event
 import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.ViewAgenda
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -61,6 +62,13 @@ fun MainActivityScreeen() {
                         icon = { Icon(Icons.Default.History, contentDescription = "Historique") },
                         label = { Text("Historique") }
                     )
+                    NavigationBarItem(
+                        selected = currentRoute == "Agenda",
+                        onClick = { navController.navigate("Agenda") },
+                        icon = { Icon(Icons.Default.ViewAgenda, contentDescription = "Agenda") },
+                        label = { Text("Agenda") }
+
+                    )
                 }
             }
         },
@@ -75,14 +83,14 @@ fun MainActivityScreeen() {
         ) {
 
             composable("main") { MainScreen() }
-
+            composable(route = "agenda") { AgendaScreen(navController) }
             composable("history") { HistoryScreen() }
             composable("events") { EventsScreen(navController) }
             composable("event_details/{eventTitle}") { backStackEntry ->
                 val eventTitle = backStackEntry.arguments?.getString("eventTitle") ?: "Titre inconnu"
                 Log.d("DEBUG", "🆔 Titre reçu : $eventTitle")
                 // Afficher le titre et la description sur l'écran de détails
-                EventDetailScreen(navController, eventTitle)
+                EventDetailScreen(navController, eventTitle  )
 
             }
 

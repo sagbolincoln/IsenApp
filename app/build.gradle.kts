@@ -96,6 +96,7 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
 
     implementation ("androidx.compose.material:material-icons-extended:1.5.1")
+    implementation ("com.kizitonwose.calendar:view:2.0.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
