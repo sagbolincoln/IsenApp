@@ -87,7 +87,7 @@ app/
 ---
 
 **Licence**
-MIT License © 2025 Ton Nom
+MIT License © 2025 Lincoln
 
 ```
 
