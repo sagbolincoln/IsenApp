@@ -91,5 +91,5 @@ MIT License © 2025 Lincoln
 
 ```
 
-- **Tagline courte (à copier dans le champ “Description” de GitHub)**  
+- Tagline courte (à copier dans le champ “Description” de GitHub)  
   > Assistant personnel pour les étudiants de l’ISEN Toulon : planning, événements et IA.
